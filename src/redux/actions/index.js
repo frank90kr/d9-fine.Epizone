@@ -16,9 +16,9 @@ export const deleteAgency = (i) => {
   };
 };
 
-export const getAgencyAction = () => {
-  return (dispatch, getState) => {
-    fetch("https://strive-benchmark.herokuapp.com/api/jobs?search=")
+export const getAgencyAction = (query) => {
+  return (dispatch) => {
+    fetch("https://strive-benchmark.herokuapp.com/api/jobs?search=" + query + "&limit=20")
       .then((resp) => {
         if (resp.ok) {
           return resp.json();
@@ -27,7 +27,7 @@ export const getAgencyAction = () => {
         }
       })
       .then((fetchedAgency) => {
-        getState();
+        // getState();
 
         dispatch({
           type: GET_AGENCY,
